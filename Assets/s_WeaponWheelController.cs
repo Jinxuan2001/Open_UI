@@ -9,33 +9,53 @@ public class s_WeaponWheelController : MonoBehaviour
     public Image selectedItem;
     public Sprite noImage;
     public static int weaponID;
+    public bool modification = false;
+    private bool mod = false;
 
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (!modification)
         {
-            if (!GameManager.inventory)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                weaponWheelSelected = !weaponWheelSelected;
+                if (!GameManager.inventory)
+                {
+                    weaponWheelSelected = !weaponWheelSelected;
+                }
             }
-        }
-
-        if (weaponWheelSelected)
-        {
-            anim.SetBool("OpenWeaponWheel", true);
-            animBckground.SetBool("OpenWeaponWheel", true);
         }
         else
         {
-            anim.SetBool("OpenWeaponWheel", false);
-            animBckground.SetBool("OpenWeaponWheel", false);
+            if (mod)
+            {
+                weaponWheelSelected = true;
+            }
         }
+
+            if (weaponWheelSelected)
+            {
+                anim.SetBool("OpenWeaponWheel", true);
+                animBckground.SetBool("OpenWeaponWheel", true);
+            }
+            else
+            {
+                anim.SetBool("OpenWeaponWheel", false);
+                animBckground.SetBool("OpenWeaponWheel", false);
+            }
+        
+        
     }
 
     public void CloseWheel()
     {
         weaponWheelSelected = !weaponWheelSelected;
+        mod = false;
+    }
+
+    public void ModifyWheel()
+    {
+        mod = true;
     }
 }

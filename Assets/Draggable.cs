@@ -63,10 +63,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         if (Input.GetMouseButtonDown(1))
         {
             infoPanel.SetActive(false);
-
+            GameManager.modSlected = sp;
+            GameManager.modName = name;
             menu.transform.position = gameObject.transform.position;
             menu.SetActive(true);
             UpdateInfo();
+            Debug.Log(GameManager.modSlected);
         }
     }
 

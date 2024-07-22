@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class s_WeaponWheelButtonController : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class s_WeaponWheelButtonController : MonoBehaviour
     private bool selected = false;
     public Sprite icon;
 
+    public bool modifiaction = false;
+    public GameObject wpMod = null;
+    public GameObject wpWheel = null;
+    public GameObject wheelButton = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +28,23 @@ public class s_WeaponWheelButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (selected)
+        if (modifiaction)
         {
-            selectedItem.sprite = icon;
-            itemText.text = itemName;
+            if (selected)
+            {
+                wpMod.GetComponent<Image>().sprite = GameManager.modSlected;
+                wpWheel.GetComponent<Image>().sprite = GameManager.modSlected;
+                wheelButton.GetComponent<s_WeaponWheelButtonController>().itemName = GameManager.modName;
+                wheelButton.GetComponent<s_WeaponWheelButtonController>().icon = GameManager.modSlected; 
+            }
+        }
+        else
+        {
+            if (selected)
+            {
+                selectedItem.sprite = icon;
+                itemText.text = itemName;
+            }
         }
     }
 
