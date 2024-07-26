@@ -18,6 +18,16 @@ public class Player : MonoBehaviour
         {
             GameManager.inventory = !GameManager.inventory;
             inventoryOpend = !inventoryOpend;
+            if (inventoryOpend)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else 
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
 
         inventory.SetActive(inventoryOpend);

@@ -23,6 +23,11 @@ public class s_WeaponWheelController : MonoBehaviour
                 if (!GameManager.inventory)
                 {
                     weaponWheelSelected = !weaponWheelSelected;
+                    if (weaponWheelSelected)
+                    {
+                        Cursor.lockState = CursorLockMode.None;
+                        Cursor.visible = true;
+                    }
                 }
             }
         }
@@ -34,16 +39,16 @@ public class s_WeaponWheelController : MonoBehaviour
             }
         }
 
-            if (weaponWheelSelected)
-            {
-                anim.SetBool("OpenWeaponWheel", true);
-                animBckground.SetBool("OpenWeaponWheel", true);
-            }
-            else
-            {
-                anim.SetBool("OpenWeaponWheel", false);
-                animBckground.SetBool("OpenWeaponWheel", false);
-            }
+        if (weaponWheelSelected)
+        {
+            anim.SetBool("OpenWeaponWheel", true);
+            animBckground.SetBool("OpenWeaponWheel", true);
+        }
+        else
+        {
+            anim.SetBool("OpenWeaponWheel", false);
+            animBckground.SetBool("OpenWeaponWheel", false);
+        }
         
         
     }
@@ -52,6 +57,8 @@ public class s_WeaponWheelController : MonoBehaviour
     {
         weaponWheelSelected = !weaponWheelSelected;
         mod = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void ModifyWheel()
