@@ -45,6 +45,10 @@ public class s_WeaponWheelController : MonoBehaviour
             {
                 weaponWheelSelected = true;
             }
+            else
+            {
+                weaponWheelSelected = false;
+            }
         }
 
         if (weaponWheelSelected)
