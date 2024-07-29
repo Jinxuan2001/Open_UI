@@ -11,6 +11,7 @@ public class s_WeaponWheelController : MonoBehaviour
     public static int weaponID;
     public bool modification = false;
     private bool mod = false;
+    public s_PlayerMovement playerMovement;
 
 
 
@@ -18,16 +19,23 @@ public class s_WeaponWheelController : MonoBehaviour
     {
         if (!modification)
         {
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (!GameManager.inventory)
             {
-                if (!GameManager.inventory)
+                if (Input.GetKeyDown(KeyCode.Tab))
                 {
-                    weaponWheelSelected = !weaponWheelSelected;
-                    if (weaponWheelSelected)
-                    {
-                        Cursor.lockState = CursorLockMode.None;
-                        Cursor.visible = true;
-                    }
+                    weaponWheelSelected = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    Time.timeScale = 0.1f;
+                    playerMovement.EnterMenu();
+                }
+                if (Input.GetKeyUp(KeyCode.Tab))
+                {
+                    weaponWheelSelected = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                    Time.timeScale = 1.0f;
+                    playerMovement.ExitMenu();
                 }
             }
         }
@@ -55,10 +63,8 @@ public class s_WeaponWheelController : MonoBehaviour
 
     public void CloseWheel()
     {
-        weaponWheelSelected = !weaponWheelSelected;
+        //weaponWheelSelected = !weaponWheelSelected;
         mod = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     public void ModifyWheel()
