@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: capybara
   m_EditorClassIdentifier: 
   itemName: Capybara
-  description: 
+  description: A gentle, large rodent with soft, brown fur and a calm demeanor. Known
+    for its friendly nature.
   itemIcon: {fileID: 0}
   isThrowable: 1

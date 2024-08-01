@@ -9,7 +9,7 @@ public class DisplayWeaponInfo : MonoBehaviour, IDragHandler
 {
     private void Start()
     {
-        gameObject.SetActive(false);
+        // gameObject.SetActive(false);
     }
 
     public void OpenPanel()

@@ -70,8 +70,11 @@ public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void UpdateInfo()
     {
-        //tmp1.text = name;
+        Debug.Log("Updating Item Info");
+
         infoImage.sprite = icon;
+        itemInfoName.text = name;
+        itemInfoDescription.text = description;
         /*
         if (type == "firearm")
         {

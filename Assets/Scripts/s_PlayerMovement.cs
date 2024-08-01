@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class s_PlayerMovement : MonoBehaviour
 {
@@ -51,6 +53,7 @@ public class s_PlayerMovement : MonoBehaviour
         MovePlayer();
         AnimationController();
     }
+
 
     private void MyInput()
     {

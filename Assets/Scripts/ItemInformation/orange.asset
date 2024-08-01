@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd024c4ad35897458dafbdd916bb548, type: 3}
   m_Name: orange
   m_EditorClassIdentifier: 
-  itemName: 
-  description: 
+  itemName: Orange
+  description: A plump, vibrant orange with a smooth, fragrant peel.
   itemIcon: {fileID: 0}
-  isThrowable: 0
+  isThrowable: 1

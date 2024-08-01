@@ -19,6 +19,8 @@ public class s_WeaponWheelButtonController : MonoBehaviour
     public GameObject wpWheel = null;
     public GameObject wheelButton = null;
 
+    public bool hand = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,8 +52,11 @@ public class s_WeaponWheelButtonController : MonoBehaviour
 
     public void Selected()
     {
-        selected = true;
-        s_WeaponWheelController.weaponID = id;
+        if (!hand)
+        {
+            selected = true;
+            s_WeaponWheelController.weaponID = id;
+        }
     }
 
     public void Deselected()
