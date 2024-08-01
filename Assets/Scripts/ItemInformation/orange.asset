@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd024c4ad35897458dafbdd916bb548, type: 3}
   m_Name: orange
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Orange
   description: 
-  itemIcon: {fileID: 0}
-  isThrowable: 0
+  itemIcon: {fileID: 21300000, guid: 4d130f9846e23f4479f8a0d1711111e1, type: 3}
+  isThrowable: 1

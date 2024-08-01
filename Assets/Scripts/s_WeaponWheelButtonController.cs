@@ -6,13 +6,18 @@ using Unity.VisualScripting;
 public class s_WeaponWheelButtonController : MonoBehaviour
 {
 
-    public int id;
+    //public int id;
     private Animator anim;
-    public string itemName;
     public TextMeshProUGUI itemText;
     public Image selectedItem;
     private bool selected = false;
+    public bool hasItem = false;
+
+    [Header("Item Info")]
+    public string itemName;
+    public string itemDescription;
     public Sprite icon;
+    public Sprite emptyIcon;
 
     public bool modifiaction = false;
     public GameObject wpMod = null;
@@ -23,6 +28,14 @@ public class s_WeaponWheelButtonController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        if (hasItem)
+        {
+            this.transform.GetChild(0).GetComponent<Image>().sprite = icon;
+        }
+        else
+        {
+            this.transform.GetChild(0).GetComponent<Image>().sprite = emptyIcon;
+        }
     }
 
     // Update is called once per frame
@@ -51,13 +64,13 @@ public class s_WeaponWheelButtonController : MonoBehaviour
     public void Selected()
     {
         selected = true;
-        s_WeaponWheelController.weaponID = id;
+        //s_WeaponWheelController.weaponID = id;
     }
 
     public void Deselected()
     {
         selected = false;
-        s_WeaponWheelController.weaponID = 0;
+        //s_WeaponWheelController.weaponID = 0;
     }
 
     public void HoverEnter()

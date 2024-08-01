@@ -13,6 +13,7 @@ public class s_PlayerInventory : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject slotPrefab;
     public GameObject pickupPrompt;
+
     
 
     void Start()
