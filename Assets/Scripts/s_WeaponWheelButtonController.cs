@@ -68,7 +68,7 @@ public class s_WeaponWheelButtonController : MonoBehaviour
         if (!hand)
         {
             selected = true;
-            s_WeaponWheelController.weaponID = id;
+            //s_WeaponWheelController.weaponID = id;
         }
     }
 
