@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd024c4ad35897458dafbdd916bb548, type: 3}
   m_Name: banana
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Banana
   description: 
-  itemIcon: {fileID: 0}
-  isThrowable: 0
+  itemIcon: {fileID: 21300000, guid: 716829a764215ab4e87d1ec649c71a08, type: 3}
+  isThrowable: 1

@@ -15,7 +15,7 @@ public class s_InventoryController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             GameManager.inventory = !GameManager.inventory;
             inventoryOpened = !inventoryOpened;

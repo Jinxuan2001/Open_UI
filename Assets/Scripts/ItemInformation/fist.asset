@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd024c4ad35897458dafbdd916bb548, type: 3}
   m_Name: fist
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Fist
   description: 
-  itemIcon: {fileID: 0}
-  isThrowable: 0
+  itemIcon: {fileID: 21300000, guid: 1888a35e47fb7084bb713966d5eccf88, type: 3}
+  isThrowable: 1
