@@ -25,23 +25,16 @@ public class s_PlayerInventory : MonoBehaviour
         playerItems = new List<Tuple<s_Item, int>>();
     }
 
-    void Update()
-    {
-        if (pickupQueue.Count > 0)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                PickupItem();
-                Debug.Log("PICKED UP");
-            }
-        }
-    }
-
     public void PickupItem()
     {
         s_Item curItem = RemovePickupQueue();
         AddItem(curItem);
         ClosePickupPrompt();
+    }
+
+    public void ThrowItem(s_Item item_)
+    {
+
     }
 
 
@@ -192,4 +185,5 @@ public class s_PlayerInventory : MonoBehaviour
     {
         pickupPrompt.SetActive(false);
     }
+
 }

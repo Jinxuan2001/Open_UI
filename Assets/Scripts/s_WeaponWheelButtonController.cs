@@ -9,7 +9,7 @@ public class s_WeaponWheelButtonController : MonoBehaviour
     //public int id;
     private Animator anim;
     public TextMeshProUGUI itemText;
-    public Image selectedItem;
+    public GameObject selectedItem;
     private bool selected = false;
     public bool hasItem = false;
 
@@ -57,7 +57,9 @@ public class s_WeaponWheelButtonController : MonoBehaviour
         {
             if (selected)
             {
-                selectedItem.sprite = icon;
+                selectedItem.GetComponent<Image>().sprite = icon;
+                selectedItem.GetComponent<s_Item>().name = itemName;
+                selectedItem.GetComponent<s_Item>().description = itemDescription;
                 itemText.text = itemName;
             }
         }
