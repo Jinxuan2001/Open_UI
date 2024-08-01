@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: apple
   m_EditorClassIdentifier: 
   itemName: Apple
-  description: 
+  description: A bright red apple that looks incredibly juicy and fresh. Perfect
+    for a quick snack.
   itemIcon: {fileID: 21300000, guid: 893c4896b7f0cfc449b8e0d8bfed0baf, type: 3}
   isThrowable: 1

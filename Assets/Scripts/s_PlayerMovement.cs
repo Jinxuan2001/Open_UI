@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class s_PlayerMovement : MonoBehaviour
 {
@@ -31,6 +33,11 @@ public class s_PlayerMovement : MonoBehaviour
     [Header("Camera")]
     public CinemachineFreeLook cineMachine;
 
+    [Header("Audio")]
+    public AudioSource playerAudio;
+    public AudioClip walk, run, jump;
+    public bool audioPause = false;
+
     void Start()
     {
         playerController = GetComponent<CharacterController>();
@@ -51,6 +58,7 @@ public class s_PlayerMovement : MonoBehaviour
         MovePlayer();
         AnimationController();
     }
+
 
     private void MyInput()
     {
@@ -93,9 +101,22 @@ public class s_PlayerMovement : MonoBehaviour
         sprinting = false;
         walking = false;
         falling = false;
+        if (playerAudio.clip == null)
+        {
+            playerAudio.clip = walk;
+        }
         if (Input.GetButtonDown("Jump"))
         {
             playerAnim.SetTrigger("Jump");
+            playerAudio.loop = false;
+            playerAudio.clip = jump;
+            if (playerAudio.isPlaying && playerAudio.clip != jump)
+            {
+                playerAudio.Stop();
+            }
+            playerAudio.Play();
+            playerAudio.pitch = 1.0f;
+            playerAudio.volume = 0.25f;
         }
         if (inAir)
         {
@@ -107,17 +128,42 @@ public class s_PlayerMovement : MonoBehaviour
             playerAnim.ResetTrigger("Jump");
             playerAnim.SetBool("Falling", false);
             falling = false;
+            //if (playerAudio.clip == jump)
+            //{
+            //    playerAudio.clip = null;
+            //}
         }
         if ((verticalInput != 0f || horizontalInput != 0f))
         {
             idle = false;
             walking = true;
+            if (Input.GetKey(KeyCode.LeftShift) && !playerAudio.isPlaying && falling == false)
+            {
+                playerAudio.loop = true;
+                playerAudio.clip = run;
+                playerAudio.Play();
+                playerAudio.pitch = 0.7f;
+                playerAudio.volume = 0.25f;
+            }
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 walking = false;
                 sprinting = true;
                 w_speed = w_speed + rn_speed;
                 SprintAnim();
+                if (playerAudio.clip == null)
+                {
+                    playerAudio.loop = true;
+                    playerAudio.clip = run;
+                }
+                if (((!playerAudio.isPlaying) || playerAudio.clip == walk) && falling == false)
+                {
+                    playerAudio.loop = true;
+                    playerAudio.clip = run;
+                    playerAudio.Play();
+                    playerAudio.pitch = 0.7f;
+                    playerAudio.volume = 0.25f;
+                }
             }
             else if (Input.GetKeyUp(KeyCode.LeftShift))
             {
@@ -125,10 +171,36 @@ public class s_PlayerMovement : MonoBehaviour
                 sprinting = false;
                 w_speed = olw_speed;
                 JogAnim();
+                if (playerAudio.clip == null)
+                {
+                    playerAudio.loop = true;
+                    playerAudio.clip = walk;
+                }
+                if (((!playerAudio.isPlaying) || playerAudio.clip == run) && falling == false)
+                {
+                    playerAudio.loop = true;
+                    playerAudio.clip = walk;
+                    playerAudio.Play();
+                    playerAudio.pitch = 1.25f;
+                    playerAudio.volume = 0.25f;
+                }
             }
             else if (!Input.GetKey(KeyCode.LeftShift))
             {
                 JogAnim();
+                if (playerAudio.clip == null)
+                {
+                    playerAudio.loop = true;
+                    playerAudio.clip = walk;
+                }
+                if (((!playerAudio.isPlaying) || playerAudio.clip == run) && falling == false)
+                {
+                    playerAudio.loop = true;
+                    playerAudio.clip = walk;
+                    playerAudio.Play();
+                    playerAudio.pitch = 1.25f;
+                    playerAudio.volume = 0.25f;
+                }
             }
             //if (Input.GetKeyDown(KeyCode.LeftShift))
             //{
@@ -150,6 +222,11 @@ public class s_PlayerMovement : MonoBehaviour
                 sprinting = false;
                 w_speed = olw_speed;
                 IdleAnim();
+                if (playerAudio.isPlaying && playerAudio.clip != jump)
+                {
+                    playerAudio.Stop();
+                    playerAudio.loop = false;
+                }
             }
         }
     }

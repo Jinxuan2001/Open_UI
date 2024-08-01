@@ -13,7 +13,10 @@ public class s_PlayerInventory : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject slotPrefab;
     public GameObject pickupPrompt;
-
+    public GameObject itemInfoPanel;
+    public TextMeshProUGUI itemInfoName;
+    public TextMeshProUGUI itemInfoDescription;
+    public Image itemInfoImage;
     
 
     void Start()
@@ -168,6 +171,11 @@ public class s_PlayerInventory : MonoBehaviour
                 curSlot.GetComponent<Image>().sprite = item_.icon;
                 curSlot.GetComponent<s_Draggable>().dragIcon = curSlot.GetComponent<Image>();
                 curSlot.GetComponent<s_Draggable>().infoImage = curSlot.GetComponent<Image>();
+
+                curSlot.GetComponent<s_Draggable>().infoPanel = itemInfoPanel;
+                curSlot.GetComponent<s_Draggable>().itemInfoName = this.itemInfoName;
+                curSlot.GetComponent<s_Draggable>().itemInfoDescription = this.itemInfoDescription;
+                curSlot.GetComponent<s_Draggable>().infoImage = this.itemInfoImage;
                 Destroy(item_.gameObject);
                 break;
             }

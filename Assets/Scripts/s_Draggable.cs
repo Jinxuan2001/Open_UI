@@ -17,12 +17,11 @@ public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     [HideInInspector] public Transform parentAfterDrag;
 
 
-    //To Eventually Be Deleted
+    //Item Info
     public GameObject menu;
     public GameObject infoPanel;
-    public TextMeshProUGUI tmp1;
-    public TextMeshProUGUI tmp2;
-    public TextMeshProUGUI tmp3;
+    public TextMeshProUGUI itemInfoName;
+    public TextMeshProUGUI itemInfoDescription;
 
     void Start()
     {
@@ -68,10 +67,14 @@ public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         //    Debug.Log(GameManager.modSlected);
         //}
     }
+
     public void UpdateInfo()
     {
-        //tmp1.text = name;
+        Debug.Log("Updating Item Info");
+
         infoImage.sprite = icon;
+        itemInfoName.text = name;
+        itemInfoDescription.text = description;
         /*
         if (type == "firearm")
         {

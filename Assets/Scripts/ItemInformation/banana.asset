@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: banana
   m_EditorClassIdentifier: 
   itemName: Banana
-  description: 
+  description: A ripe yellow banana with a slight curve. Minions' favorite.
   itemIcon: {fileID: 21300000, guid: 716829a764215ab4e87d1ec649c71a08, type: 3}
   isThrowable: 1
