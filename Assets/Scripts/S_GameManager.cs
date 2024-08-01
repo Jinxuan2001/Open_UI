@@ -16,22 +16,21 @@ public class S_GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             gamePaused = !gamePaused;
+            if (gamePaused)
+            {
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Time.timeScale = 1.0f;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
         pauseMenu.SetActive(gamePaused);
         bgm.mute = gamePaused;
-
-        if (gamePaused)
-        {
-            Time.timeScale = 0f;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Time.timeScale = 1.0f;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
     }
 
     public void LoadMainMenu()

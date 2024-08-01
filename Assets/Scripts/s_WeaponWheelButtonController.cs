@@ -83,12 +83,18 @@ public class s_WeaponWheelButtonController : MonoBehaviour
     public void HoverEnter()
     {
         anim.SetBool("Hover", true);
-        itemText.text = itemName;
+        if (!modifiaction)
+        {
+            itemText.text = itemName;
+        }
     }
 
     public void HoverExit()
     {
         anim.SetBool("Hover", false);
-        itemText.text = "";
+        if (!modifiaction)
+        {
+            itemText.text = "";
+        }
     }
 }

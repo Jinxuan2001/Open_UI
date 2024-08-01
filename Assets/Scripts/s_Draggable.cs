@@ -26,6 +26,13 @@ public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     void Start()
     {
         //menu.SetActive(false);
+        infoPanel = GameObject.FindWithTag("InfoPanel");
+        if (infoPanel != null)
+        {
+            itemInfoName = infoPanel.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            itemInfoDescription = infoPanel.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            infoImage = infoPanel.transform.GetChild(2).GetComponent<Image>();
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -41,6 +48,7 @@ public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         //Debug.Log("Dragging");
         transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        this.gameObject.GetComponent<Image>().rectTransform.localScale = new Vector3(0.1f, 0.1f, 1f);
 
         //menu.SetActive(false);
         //infoPanel.SetActive(false);
@@ -50,6 +58,7 @@ public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         //Debug.Log("End dragging");
         transform.SetParent(parentAfterDrag);
+        this.gameObject.GetComponent<Image>().rectTransform.localScale = new Vector3(1.0f, 1.0f, 1f);
         dragIcon.raycastTarget = true;
     }
 
@@ -71,20 +80,11 @@ public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void UpdateInfo()
     {
         Debug.Log("Updating Item Info");
-
-        infoImage.sprite = icon;
-        itemInfoName.text = name;
-        itemInfoDescription.text = description;
-        /*
-        if (type == "firearm")
+        if (infoPanel != null)
         {
-            //tmp2.text = "Firepower: " + dmg.ToString() + "  Fire Rate: " + rate.ToString() + "  Bullet Caliber: " + bullet;
+            infoImage.sprite = icon;
+            itemInfoName.text = name;
+            itemInfoDescription.text = description;
         }
-        else
-        {
-            tmp2.text = "";
-        }
-        */
-        //tmp3.text = description;
     }
 }
