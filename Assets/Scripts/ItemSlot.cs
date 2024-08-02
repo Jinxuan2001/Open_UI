@@ -15,6 +15,17 @@ public class ItemSlot : MonoBehaviour, IDropHandler
             s_Draggable draggedItem = dropped.GetComponent<s_Draggable>();
             draggedItem.parentAfterDrag = transform;
         }
+        //if (this.GetComponent<s_WeaponWheelButtonController>() != null)
+        //{
+        //    if (!this.GetComponent<s_WeaponWheelButtonController>().hasItem)
+        //    {
+        //        GameObject dropped = eventData.pointerDrag;
+        //        if (dropped.CompareTag("Finish"))
+        //        {
+        //            Destroy(dropped);
+        //        }
+        //    }
+        //}
     }
 
 }

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerUpHandler
 {
 
     public string name;
@@ -85,6 +85,27 @@ public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             infoImage.sprite = icon;
             itemInfoName.text = name;
             itemInfoDescription.text = description;
+        }
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Debug.Log("Pointer UP!");
+        GameObject weaponWheelSlot = eventData.pointerCurrentRaycast.gameObject;
+        if (weaponWheelSlot != null)
+        {
+            if (weaponWheelSlot.CompareTag("WeaponWheelSlot"))
+            {
+                Debug.Log("Weapon Wheel Slot!");
+                GameObject weaponWheelButton = weaponWheelSlot.transform.parent.gameObject;
+                s_WeaponWheelButtonController buttonController = weaponWheelButton.GetComponent<s_WeaponWheelButtonController>();
+                bool isSuccess = buttonController.UpdateSlot(name, description, icon);
+                if (isSuccess)
+                {
+
+                }
+
+            }
         }
     }
 }

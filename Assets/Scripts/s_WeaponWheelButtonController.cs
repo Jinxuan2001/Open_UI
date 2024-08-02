@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 public class s_WeaponWheelButtonController : MonoBehaviour
 {
@@ -17,12 +18,14 @@ public class s_WeaponWheelButtonController : MonoBehaviour
     public string itemName;
     public string itemDescription;
     public Sprite icon;
+    public int itemQuantity;
     public Sprite emptyIcon;
 
     public bool modifiaction = false;
     public GameObject wpMod = null;
     public GameObject wpWheel = null;
     public GameObject wheelButton = null;
+    public s_PlayerInventory playerInventory;
 
     public bool hand = false;
 
@@ -30,6 +33,7 @@ public class s_WeaponWheelButtonController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        playerInventory = GameObject.FindWithTag("Player").GetComponent<s_PlayerInventory>();
         if (hasItem)
         {
             this.transform.GetChild(0).GetComponent<Image>().sprite = icon;
@@ -96,5 +100,25 @@ public class s_WeaponWheelButtonController : MonoBehaviour
         {
             itemText.text = "";
         }
+    }
+
+    public bool UpdateSlot(string name_, string description_, Sprite icon_)
+    {
+        if (!playerInventory.inWheel.Contains(name_))
+        {
+            if (hasItem)
+            {
+                playerInventory.inWheel.Remove(itemName);
+            }
+            itemName = name_;
+            playerInventory.inWheel.Add(name_);
+            itemDescription = description_;
+            icon = icon_;
+            //itemQuantity = quantity_;
+            this.transform.GetChild(0).GetComponent<Image>().sprite = icon;
+            hasItem = true;
+            return true;
+        }
+        return false;
     }
 }

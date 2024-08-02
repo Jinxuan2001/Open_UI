@@ -19,7 +19,11 @@ public class S_PlayerControl : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0))
             {
-                //playerInventory.ThrowItem();
+                s_Item curItem = selectedItem.GetComponent<s_Item>();
+                if (curItem.isThrowable)
+                {
+                    playerInventory.ThrowItem(curItem);
+                }
             }
         }
     }

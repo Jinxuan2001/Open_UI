@@ -9,7 +9,7 @@ public class s_PlayerInventory : MonoBehaviour
     //All items in the player's inventory
     public List<Tuple<s_Item, int>> playerItems;
     public Queue<s_Item> pickupQueue = new Queue<s_Item>();
-
+    public List<string> inWheel;
     public GameObject inventoryPanel;
     public GameObject slotPrefab;
     public GameObject pickupPrompt;
@@ -34,7 +34,16 @@ public class s_PlayerInventory : MonoBehaviour
 
     public void ThrowItem(s_Item item_)
     {
+        Transform throwPoint = this.gameObject.transform.GetChild(2);
+        GameObject thrownObj = Instantiate(item_.model, throwPoint.position, throwPoint.rotation);
+        Rigidbody rb = thrownObj.GetComponent<Rigidbody>();
 
+        if (rb != null)
+        {
+            rb.AddForce(Vector3.forward * 5f, ForceMode.Impulse);
+        }
+
+        RemoveItem(item_);
     }
 
 

@@ -16,3 +16,4 @@ MonoBehaviour:
   description: A ripe yellow banana with a slight curve. Minions' favorite.
   itemIcon: {fileID: 21300000, guid: 716829a764215ab4e87d1ec649c71a08, type: 3}
   isThrowable: 1
+  model: {fileID: 7923153978165735217, guid: 0659d8fb2d6a7fe409ded8a4351b17dd, type: 3}

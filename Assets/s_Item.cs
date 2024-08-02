@@ -9,6 +9,7 @@ public class s_Item : MonoBehaviour
     public string name;
     public string description;
     public Sprite icon;
+    public GameObject model;
     public bool isThrowable;
 
 
@@ -19,6 +20,7 @@ public class s_Item : MonoBehaviour
             this.name = itemInfo.itemName;
             this.description = itemInfo.description;
             this.icon = itemInfo.itemIcon;
+            this.model = itemInfo.model;
             this.isThrowable = itemInfo.isThrowable;
         }
         else

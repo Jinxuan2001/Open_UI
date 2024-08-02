@@ -16,3 +16,4 @@ MonoBehaviour:
   description: 
   itemIcon: {fileID: 21300000, guid: 02da0752f63598e48b7dca28a4b52f70, type: 3}
   isThrowable: 1
+  model: {fileID: 5514988673564791497, guid: 4f68fdb6b74898148a1b0fa91d46d44b, type: 3}

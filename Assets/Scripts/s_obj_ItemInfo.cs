@@ -10,4 +10,6 @@ public class s_obj_ItemInfo : ScriptableObject
 
     public Sprite itemIcon;
     public bool isThrowable;
+
+    public GameObject model;
 }
