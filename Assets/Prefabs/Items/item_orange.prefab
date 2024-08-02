@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8249326311350763445
 Transform:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &5136447224254579307
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -296,7 +296,9 @@ MonoBehaviour:
   name: 
   description: 
   icon: {fileID: 0}
+  model: {fileID: 0}
   isThrowable: 0
+  isObject: 1
 --- !u!114 &4548055527033419443
 MonoBehaviour:
   m_ObjectHideFlags: 0

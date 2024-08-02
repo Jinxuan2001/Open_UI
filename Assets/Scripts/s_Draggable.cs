@@ -13,6 +13,8 @@ public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public Sprite icon;
     public Image dragIcon;
     public Image infoImage;
+    public bool isThrowable;
+    public GameObject model;
 
     [HideInInspector] public Transform parentAfterDrag;
 
@@ -99,12 +101,7 @@ public class s_Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 Debug.Log("Weapon Wheel Slot!");
                 GameObject weaponWheelButton = weaponWheelSlot.transform.parent.gameObject;
                 s_WeaponWheelButtonController buttonController = weaponWheelButton.GetComponent<s_WeaponWheelButtonController>();
-                bool isSuccess = buttonController.UpdateSlot(name, description, icon);
-                if (isSuccess)
-                {
-
-                }
-
+                bool isSuccess = buttonController.UpdateSlot(name, description, icon, isThrowable, model);
             }
         }
     }

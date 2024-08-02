@@ -11,6 +11,7 @@ public class s_Item : MonoBehaviour
     public Sprite icon;
     public GameObject model;
     public bool isThrowable;
+    public bool isObject;
 
 
     void Start()
@@ -26,6 +27,22 @@ public class s_Item : MonoBehaviour
         else
         {
             Debug.Log("MISSING ITEM INFO!!!");
+        }
+    }
+
+    public void LightOn()
+    {
+        if (isObject)
+        {
+            this.transform.GetChild(0).gameObject.SetActive(true);
+        }
+    }
+
+    public void LightOff()
+    {
+        if (isObject)
+        {
+            this.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 }

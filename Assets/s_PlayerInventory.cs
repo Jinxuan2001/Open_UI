@@ -17,6 +17,9 @@ public class s_PlayerInventory : MonoBehaviour
     public TextMeshProUGUI itemInfoName;
     public TextMeshProUGUI itemInfoDescription;
     public Image itemInfoImage;
+    public s_Item currentItem;
+
+    public Transform orientation;
     
 
     void Start()
@@ -40,7 +43,7 @@ public class s_PlayerInventory : MonoBehaviour
 
         if (rb != null)
         {
-            rb.AddForce(Vector3.forward * 5f, ForceMode.Impulse);
+            rb.AddForce(orientation.forward * 5f, ForceMode.Impulse);
         }
 
         RemoveItem(item_);
@@ -49,13 +52,23 @@ public class s_PlayerInventory : MonoBehaviour
 
     public void AddPickupQueue(s_Item item_)
     {
+        if (pickupQueue.Count > 0)
+        {
+            pickupQueue.Peek().LightOff();
+        }
         pickupQueue.Enqueue(item_);
+        pickupQueue.Peek().LightOn();
         OpenPickupPrompt(pickupQueue.Peek().name);
     }
 
     public s_Item RemovePickupQueue()
     {
         s_Item curItem = pickupQueue.Dequeue();
+        curItem.LightOff();
+        if (pickupQueue.Count > 0)
+        {
+            pickupQueue.Peek().LightOn();
+        }
         if (pickupQueue.Count > 0)
         {
             OpenPickupPrompt(pickupQueue.Peek().name);
@@ -70,7 +83,7 @@ public class s_PlayerInventory : MonoBehaviour
     public void RemoveItemQueue(s_Item item_)
     {
         Queue<s_Item> tempQueue = new Queue<s_Item>();
-
+        item_.LightOff();
         while (pickupQueue.Count > 0)
         {
             s_Item tempItem = pickupQueue.Dequeue();
@@ -84,6 +97,11 @@ public class s_PlayerInventory : MonoBehaviour
         while (tempQueue.Count > 0)
         {
             pickupQueue.Enqueue(tempQueue.Dequeue());
+        }
+
+        if (pickupQueue.Count > 0)
+        {
+            pickupQueue.Peek().LightOn();
         }
 
         if (pickupQueue.Count > 0)
@@ -170,6 +188,8 @@ public class s_PlayerInventory : MonoBehaviour
                 curSlot.GetComponent<s_Draggable>().name = item_.name;
                 curSlot.GetComponent<s_Draggable>().description = item_.description;
                 curSlot.GetComponent<s_Draggable>().icon = item_.icon;
+                curSlot.GetComponent<s_Draggable>().isThrowable = item_.isThrowable;
+                curSlot.GetComponent<s_Draggable>().model = item_.model;
                 curSlot.GetComponent<Image>().sprite = item_.icon;
                 curSlot.GetComponent<s_Draggable>().dragIcon = curSlot.GetComponent<Image>();
                 curSlot.GetComponent<s_Draggable>().infoImage = curSlot.GetComponent<Image>();
@@ -187,7 +207,9 @@ public class s_PlayerInventory : MonoBehaviour
     public void OpenPickupPrompt(string name_)
     {
         pickupPrompt.transform.GetChild(2).GetComponent<TMP_Text>().text = name_;
+        
         pickupPrompt.SetActive(true);
+
     }
 
     public void ClosePickupPrompt()

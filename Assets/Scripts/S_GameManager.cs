@@ -48,6 +48,7 @@ public class S_GameManager : MonoBehaviour
     public void OpenTutor()
     {
         tutorPanel.SetActive(true);
+        Debug.Log("OpenTUt");
     }
 
     public void CloseTutor()

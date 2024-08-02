@@ -20,6 +20,8 @@ public class s_WeaponWheelButtonController : MonoBehaviour
     public Sprite icon;
     public int itemQuantity;
     public Sprite emptyIcon;
+    public bool isThrowable;
+    public GameObject itemModel;
 
     public bool modifiaction = false;
     public GameObject wpMod = null;
@@ -51,10 +53,10 @@ public class s_WeaponWheelButtonController : MonoBehaviour
         {
             if (selected)
             {
-                wpMod.GetComponent<Image>().sprite = GameManager.modSlected;
-                wpWheel.GetComponent<Image>().sprite = GameManager.modSlected;
-                wheelButton.GetComponent<s_WeaponWheelButtonController>().itemName = GameManager.modName;
-                wheelButton.GetComponent<s_WeaponWheelButtonController>().icon = GameManager.modSlected; 
+                //wpMod.GetComponent<Image>().sprite = GameManager.modSlected;
+                //wpWheel.GetComponent<Image>().sprite = GameManager.modSlected;
+                //wheelButton.GetComponent<s_WeaponWheelButtonController>().itemName = GameManager.modName;
+                //wheelButton.GetComponent<s_WeaponWheelButtonController>().icon = GameManager.modSlected; 
             }
         }
         else
@@ -64,6 +66,8 @@ public class s_WeaponWheelButtonController : MonoBehaviour
                 selectedItem.GetComponent<Image>().sprite = icon;
                 selectedItem.GetComponent<s_Item>().name = itemName;
                 selectedItem.GetComponent<s_Item>().description = itemDescription;
+                selectedItem.GetComponent<s_Item>().isThrowable = isThrowable;
+                selectedItem.GetComponent<s_Item>().model = itemModel;
                 itemText.text = itemName;
             }
         }
@@ -102,9 +106,9 @@ public class s_WeaponWheelButtonController : MonoBehaviour
         }
     }
 
-    public bool UpdateSlot(string name_, string description_, Sprite icon_)
+    public bool UpdateSlot(string name_, string description_, Sprite icon_, bool isThrowable_, GameObject model_)
     {
-        if (!playerInventory.inWheel.Contains(name_))
+        if (!playerInventory.inWheel.Contains(name_) || !modifiaction)
         {
             if (hasItem)
             {
@@ -114,6 +118,13 @@ public class s_WeaponWheelButtonController : MonoBehaviour
             playerInventory.inWheel.Add(name_);
             itemDescription = description_;
             icon = icon_;
+            isThrowable = isThrowable_;
+            itemModel = model_;
+            if (modifiaction)
+            {
+                wheelButton.GetComponent<s_WeaponWheelButtonController>().UpdateSlot(name_, description_, icon_, isThrowable_, model_);
+            }
+
             //itemQuantity = quantity_;
             this.transform.GetChild(0).GetComponent<Image>().sprite = icon;
             hasItem = true;
